@@ -1,1 +1,6 @@
 cmake-build-debug
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+Roomgenerator
+
