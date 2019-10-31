@@ -7,7 +7,7 @@
 #define SHAPELISTLENGTH 2
 #define ROOMWIDTH 50
 #define ROOMHEIGHT 50
-#define ROBOTSIZE 2
+#define ROBOTSIZE 3
 #define BOUND 1000
 
 int room[ROOMWIDTH][ROOMHEIGHT] = {0};
