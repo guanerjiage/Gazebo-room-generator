@@ -1,12 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include <pm.h>
 #include "Shape.h"
 
-#define OCCUPENCYMIN 0.2
-#define OCCUPENCYMAX 0.8
-#define SHAPELISTLENGTH 2
-#define ROOMWIDTH 50
-#define ROOMHEIGHT 50
+#define OCCUPENCYMIN 0.05
+#define OCCUPENCYMAX 0.1
+#define SHAPELISTLENGTH 1
+#define ROOMWIDTH 200
+#define ROOMHEIGHT 200
 #define ROBOTSIZE 3
 #define BOUND 1000
 
@@ -16,7 +17,7 @@ int shapeArray0[5][10] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                           2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                           2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
                           2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                          2, 2, 2, 0, 0, 0, 0, 2, 2, 2};
+                          2, 2, 2, 2, 2, 0, 0, 0, 0, 2};
 int shapeArray1[7][7] = {0, 0, 2, 2, 2, 0, 0,
                          0, 2, 0, 0, 0, 2, 0,
                          2, 0, 0, 0, 0, 0, 2,
@@ -53,6 +54,7 @@ void init() {
         //std::cout<<std::endl;
     }
     shapeList[1]->size = 37;
+
     return;
 }
 
@@ -73,12 +75,12 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
     if (x < ROBOTSIZE || y < ROBOTSIZE || x + shapeList[shape_index]->height > ROOMHEIGHT ||
         y + shapeList[shape_index]->width > ROOMWIDTH)
         return false;
-    std::cout << "Pass size check" << std::endl;
+    //std::cout << "Pass size check" << std::endl;
     // check if the occupancy are beyond max
     if ((current_occupancy * ROOMHEIGHT * ROOMWIDTH + shapeList[shape_index]->size) / (ROOMWIDTH * ROOMHEIGHT) >
         OCCUPENCYMAX)
         return false;
-    std::cout << "Pass occupancy check" << std::endl;
+    //std::cout << "Pass occupancy check" << std::endl;
     // put it inside and check for intersect
     for (int i = 0; i < shapeList[shape_index]->height; i++) {
         for (int j = 0; j < shapeList[shape_index]->width; j++) {
@@ -88,7 +90,7 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
                 a[x + i][y + j] = shapeList[shape_index]->index(i, j);
         }
     }
-    std::cout << "Pass intersection check" << std::endl;
+    //std::cout << "Pass intersection check" << std::endl;
 
     // check if roadway for robot still exist
     // for simplification we over approximate at the corner cases
@@ -108,7 +110,7 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
                 return false;
         }
     }
-    std::cout << "Pass roadway check" << std::endl;
+    //std::cout << "Pass roadway check" << std::endl;
     // delete the space
     for (int i = 0; i < ROOMHEIGHT; ++i)
         delete[] a[i];
@@ -134,6 +136,8 @@ double updateRoom(int x, int y, int shape_index, double current_occupancy) {
 int main() {
 
     init();
+    std::fstream myfile("/home/hiwi03/Roomgenerator/generatelist.txt");
+    std::cout<<myfile.is_open()<<std::endl;
     double occupancy = 0;
     // in order to bound the search time as improper setting could face no valid map
     int search = 0;
@@ -144,7 +148,8 @@ int main() {
         int s = rand() % SHAPELISTLENGTH;
         if (checkValidation(x, y, s, occupancy)) {
             occupancy = updateRoom(x, y, s, occupancy);
-            std::cout << x<<' '<<y<<' '<<occupancy << std::endl;
+            std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
+            myfile <<x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
         }
 
 
@@ -159,7 +164,7 @@ int main() {
         }
         std::cout << std::endl;
     }
-
+    myfile.close();
     delete shapeList[0];
     delete shapeList[1];
     return 0;
