@@ -1,7 +1,5 @@
 import xml.etree.ElementTree as ET
 
-shape_size = [[1.0, 0.5]]
-
 def insert_new_shape(x, y, shape_index, world):
     # get the handler of tag model in newshape file
     if shape_index == 0:
@@ -13,8 +11,8 @@ def insert_new_shape(x, y, shape_index, world):
     # changing location and adding shape into the world file
     n_pose = newshape.find('pose')
     # in the form of (x,y,z,alpha,beta,garmma)
-    # the parameter are the left up corner of the modle, shift it to the center
-    n_pose.text = str(x + shape_size[shape_index][0]/2)+' '+str(y - shape_size[shape_index][1]/2)+' 0 0 -0 0'
+    n_pose.text = str(x) +' '+str(y)+' 0 0 -0 0'
+    print(n_pose.text)
     # todo how to change size of the model
     world.append(newshape)
 
@@ -31,10 +29,7 @@ def main():
     world = root.find('world')
     for line in lines:
         newshape_info = line.split()
-        #change it to the position in gazebo
-        x = float(newshape_info[1])/10.0 -10.0
-        y = 10.0 - float(newshape_info[0])/10.0
-        insert_new_shape(x,y,int(newshape_info[2]),world)
+        insert_new_shape(newshape_info[0],newshape_info[1],int(newshape_info[2]), world)
 
 
     tree.write('/home/hiwi03/Roomgenerator/auto_gazebo/output.world')

@@ -17,8 +17,9 @@ public:
     Shape(int h = 0, int w = 0);
     ~Shape();
     int& index(int, int);
-
+    
 };
+
 
 
 #endif //CLIONPROJECTS_SHAPE_H

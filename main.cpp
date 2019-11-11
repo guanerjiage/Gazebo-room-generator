@@ -2,6 +2,7 @@
 #include <fstream>
 #include <pm.h>
 #include "Shape.h"
+#include "shapelist.h"
 
 #define OCCUPENCYMIN 0.05
 #define OCCUPENCYMAX 0.1
@@ -13,18 +14,24 @@
 
 int room[ROOMWIDTH][ROOMHEIGHT] = {0};
 Shape *shapeList[2];
-int shapeArray0[5][10] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                          2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                          2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                          2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                          2, 2, 2, 2, 2, 0, 0, 0, 0, 2};
-int shapeArray1[7][7] = {0, 0, 2, 2, 2, 0, 0,
-                         0, 2, 0, 0, 0, 2, 0,
-                         2, 0, 0, 0, 0, 0, 2,
-                         2, 0, 0, 0, 0, 0, 2,
-                         2, 0, 0, 0, 0, 0, 2,
-                         0, 2, 0, 0, 0, 2, 0,
-                         0, 0, 0, 0, 2, 0, 0};
+/*
+static int shapeArray0[5][10] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                            2, 2, 2, 2, 2, 0, 0, 0, 0, 2};
+static int shapeArray1[10][20] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+                                2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2};
+*/
+
 
 // init hard code shape list and outside room wall
 void init() {
@@ -45,15 +52,6 @@ void init() {
         }
         //std::cout<<std::endl;
     }
-    shapeList[1] = new Shape(7, 7);
-    for (int i = 0; i < shapeList[1]->height; i++) {
-        for (int j = 0; j < shapeList[1]->width; j++) {
-            shapeList[1]->index(i, j) = shapeArray1[i][j];
-            //std::cout<<shapeList[1]->index(i,j);
-        }
-        //std::cout<<std::endl;
-    }
-    shapeList[1]->size = 37;
 
     return;
 }
@@ -143,17 +141,19 @@ int main() {
     int search = 0;
     while (occupancy <= OCCUPENCYMIN && search<BOUND) {
         search++;
-        int x = rand() % ROOMHEIGHT;
-        int y = rand() % ROOMWIDTH;
+        float x = rand() % ROOMHEIGHT;
+        float y = rand() % ROOMWIDTH;
         int s = rand() % SHAPELISTLENGTH;
         if (checkValidation(x, y, s, occupancy)) {
             occupancy = updateRoom(x, y, s, occupancy);
             std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
-            myfile <<x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
+            // in order to fit into gazebo we change the coordinate
+            float x_g = (y+float(shapeList[s]->width)/2)/10-10 ;
+            float y_g = 10-(x+float(shapeList[s]->height)/2)/10 ;
+            myfile <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
         }
-
-
     }
+
     // print the room
     for (int i = 0; i < ROOMHEIGHT; i++) {
         for (int j = 0; j < ROOMWIDTH; j++) {
@@ -166,6 +166,5 @@ int main() {
     }
     myfile.close();
     delete shapeList[0];
-    delete shapeList[1];
     return 0;
 }

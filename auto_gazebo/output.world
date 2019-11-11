@@ -61,6 +61,126 @@
         <kinematic>0</kinematic>
       </link>
     </model>
+     <model name="outsidewall.sdf">
+    <pose frame="">0 0 0 0 -0 0</pose>
+    <link name="Wall_3">
+      <collision name="Wall_3_Collision">
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+      </collision>
+      <visual name="Wall_3_Visual">
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>1 1 1 1</ambient>
+        </material>
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <pose frame="">0 9.95 0 0 -0 0</pose>
+    </link>
+    <link name="Wall_5">
+      <collision name="Wall_5_Collision">
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+      </collision>
+      <visual name="Wall_5_Visual">
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>1 1 1 1</ambient>
+        </material>
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <pose frame="">-9.95 0 0 0 -0 1.5707</pose>
+    </link>
+    <link name="Wall_6">
+      <collision name="Wall_6_Collision">
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+      </collision>
+      <visual name="Wall_6_Visual">
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>1 1 1 1</ambient>
+        </material>
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <pose frame="">0 -9.95 0 0 -0 0</pose>
+    </link>
+    <link name="Wall_7">
+      <collision name="Wall_7_Collision">
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+      </collision>
+      <visual name="Wall_7_Visual">
+        <pose frame="">0 0 1.25 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>20 0.10 2.5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+          <ambient>1 1 1 1</ambient>
+        </material>
+        <meta>
+          <layer>0</layer>
+        </meta>
+      </visual>
+      <pose frame="">9.95 0 0 0 -0 1.5707</pose>
+    </link>
+    <static>1</static>
+  </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type="adiabatic" />
@@ -92,8 +212,9 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+
   <model name="shape0">
-    <pose frame="">-0.9000000000000004 -8.55 0 0 -0 0</pose>
+    <pose frame="">-0.9 -8.55 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -498,7 +619,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">6.699999999999999 7.65 0 0 -0 0</pose>
+    <pose frame="">6.7 7.65 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -903,7 +1024,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-3.5999999999999996 0.75 0 0 -0 0</pose>
+    <pose frame="">-3.6 0.75 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -1308,7 +1429,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">4.5 -2.8499999999999996 0 0 -0 0</pose>
+    <pose frame="">4.5 -2.85 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -1713,7 +1834,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">4.1 -7.449999999999999 0 0 -0 0</pose>
+    <pose frame="">4.1 -7.45 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -2118,7 +2239,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">7.199999999999999 -7.050000000000001 0 0 -0 0</pose>
+    <pose frame="">7.2 -7.05 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -2928,7 +3049,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-2.8 -2.5500000000000007 0 0 -0 0</pose>
+    <pose frame="">-2.8 -2.55 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -3333,7 +3454,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-2.5999999999999996 3.95 0 0 -0 0</pose>
+    <pose frame="">-2.6 3.95 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -4143,7 +4264,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">2.4000000000000004 7.65 0 0 -0 0</pose>
+    <pose frame="">2.4 7.65 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -4953,7 +5074,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-0.40000000000000036 -2.8499999999999996 0 0 -0 0</pose>
+    <pose frame="">-0.4 -2.85 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -5763,7 +5884,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">3.0 -0.75 0 0 -0 0</pose>
+    <pose frame="">3 -0.75 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -6168,7 +6289,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">3.4000000000000004 5.15 0 0 -0 0</pose>
+    <pose frame="">3.4 5.15 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -6573,7 +6694,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">2.9000000000000004 4.05 0 0 -0 0</pose>
+    <pose frame="">2.9 4.05 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -6978,7 +7099,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">5.0 -8.45 0 0 -0 0</pose>
+    <pose frame="">5 -8.45 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -7383,7 +7504,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-6.1 -6.949999999999999 0 0 -0 0</pose>
+    <pose frame="">-6.1 -6.95 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -8193,7 +8314,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-1.9000000000000004 8.95 0 0 -0 0</pose>
+    <pose frame="">-1.9 8.95 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -8598,7 +8719,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">8.899999999999999 -9.05 0 0 -0 0</pose>
+    <pose frame="">8.9 -9.05 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -9408,7 +9529,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-3.5 -3.4499999999999993 0 0 -0 0</pose>
+    <pose frame="">-3.5 -3.45 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -9813,7 +9934,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">9.100000000000001 7.15 0 0 -0 0</pose>
+    <pose frame="">9.1 7.15 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -10623,7 +10744,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-0.3000000000000007 -1.9499999999999993 0 0 -0 0</pose>
+    <pose frame="">-0.3 -1.95 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -11028,7 +11149,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">0.5999999999999996 -5.85 0 0 -0 0</pose>
+    <pose frame="">0.6 -5.85 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -11433,7 +11554,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-5.4 1.1500000000000004 0 0 -0 0</pose>
+    <pose frame="">-5.4 1.15 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -11838,7 +11959,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-2.0 1.6500000000000004 0 0 -0 0</pose>
+    <pose frame="">-2 1.65 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -12243,7 +12364,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">7.199999999999999 -2.9499999999999993 0 0 -0 0</pose>
+    <pose frame="">7.2 -2.95 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -12648,7 +12769,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">5.800000000000001 0.05000000000000071 0 0 -0 0</pose>
+    <pose frame="">5.8 0.0500002 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -13053,7 +13174,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">1.0999999999999996 -6.75 0 0 -0 0</pose>
+    <pose frame="">1.1 -6.75 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -13863,7 +13984,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">3.6999999999999993 2.6500000000000004 0 0 -0 0</pose>
+    <pose frame="">3.7 2.65 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -14268,7 +14389,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-7.6 -0.5500000000000007 0 0 -0 0</pose>
+    <pose frame="">-7.6 -0.55 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -15078,7 +15199,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">-7.699999999999999 -2.5500000000000007 0 0 -0 0</pose>
+    <pose frame="">-7.7 -2.55 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
@@ -15888,7 +16009,7 @@
     <allow_auto_disable>1</allow_auto_disable>
   </model>
 <model name="shape0">
-    <pose frame="">8.399999999999999 -5.75 0 0 -0 0</pose>
+    <pose frame="">8.4 -5.75 0 0 -0 0</pose>
     <link name="Wall_0">
       <pose frame="">0 0.2 0 0 -0 0</pose>
       <self_collide>0</self_collide>
