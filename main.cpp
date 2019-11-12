@@ -124,7 +124,7 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
             a[i][j] = room[i][j];
         }
     }
-    // check if the shape size is fit and check for the upper left corner already
+    // check if the shape size is fit 
     if (x < ROBOTSIZE || y < ROBOTSIZE || x + shapeList[shape_index]->height > ROOMHEIGHT ||
         y + shapeList[shape_index]->width > ROOMWIDTH)
         return false;
@@ -147,7 +147,7 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
 
     // check if roadway for robot still exist
     // for simplification we over approximate at the corner cases
-    for (int i = x - ROBOTSIZE; i < min(x + shapeList[shape_index]->height + ROBOTSIZE, ROOMHEIGHT); i++) {
+    for (int i = x - ROBOTSIZE; i < (x + shapeList[shape_index]->height + ROBOTSIZE); i++) {
         for (int j = 1; j <= ROBOTSIZE; j++) {
             //std::cout<<'('<<i<<','<<y-j<<") ("<<i<<','<<y + shapeList[shape_index]->width - 1 + j<<')'<<std::endl;
             if (a[i][y - j] != 0 || (y + shapeList[shape_index]->width - 1 + j < ROOMWIDTH &&
@@ -155,7 +155,7 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
                 return false;
         }
     }
-    for (int i = y - ROBOTSIZE; i < min(y + shapeList[shape_index]->width + ROBOTSIZE, ROOMWIDTH); i++) {
+    for (int i = y - ROBOTSIZE; i <(y + shapeList[shape_index]->width + ROBOTSIZE); i++) {
         for (int j = 1; j <= ROBOTSIZE; j++) {
             //std::cout<<'('<<x-j<<','<<i<<") ("<<x + shapeList[shape_index]->height - 1 + j<<','<<i<<')'<<std::endl;
             if (a[x - j][i] != 0  || (x + shapeList[shape_index]->height - 1 + j < ROOMHEIGHT &&
@@ -179,8 +179,6 @@ double updateRoom(int x, int y, int shape_index, double current_occupancy) {
         for (int j = 0; j < shapeList[shape_index]->width; j++) {
             if (shapeList[shape_index]->index(i, j) != 0)
                 room[x + i][y + j] = 1;
-            else
-                room[x + i][y + j] = 0;
         }
     }
     return occ;
@@ -189,9 +187,11 @@ double updateRoom(int x, int y, int shape_index, double current_occupancy) {
 int main() {
 
     init();
-    std::fstream myfile("/home/hiwi03/Roomgenerator/generatelist.txt", std::ios::trunc);
-    std::cout<<myfile.is_open()<<std::endl;
+    std::fstream generateListF("/home/hiwi03/Roomgenerator/generatelist.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
+    std::fstream mapArrayF("/home/hiwi03/Roomgenerator/maparray.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
     double occupancy = 0;
+    srand(time(0));
+    
     // in order to bound the search time as improper setting could face no valid map
     int search = 0;
     while (occupancy <= OCCUPENCYMIN && search<BOUND) {
@@ -201,11 +201,11 @@ int main() {
         int s = rand() % SHAPELISTLENGTH;
         if (checkValidation(x, y, s, occupancy)) {
             occupancy = updateRoom(x, y, s, occupancy);
-            std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
+            // std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
             // in order to fit into gazebo we change the coordinate
             float x_g = (y+float(shapeList[s]->width)/2)/10-10 ;
             float y_g = 10-(x+float(shapeList[s]->height)/2)/10 ;
-            myfile <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
+            generateListF <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
         }
     }
 
@@ -213,13 +213,16 @@ int main() {
     for (int i = 0; i < ROOMHEIGHT; i++) {
         for (int j = 0; j < ROOMWIDTH; j++) {
             if (room[i][j] == 0)
-                std::cout << ' ';
+                mapArrayF << 0<<' ';
             else
-                std::cout << '*';
+                mapArrayF << 100<<' ';
         }
-        std::cout << std::endl;
     }
-    myfile.close();
-    delete shapeList[0];
+
+
+    generateListF.close();
+    mapArrayF.close();
+    for(int i = 0; i<SHAPELISTLENGTH; i++)
+        delete shapeList[i];
     return 0;
 }
