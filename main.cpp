@@ -4,34 +4,16 @@
 #include "Shape.h"
 #include "shapelist.h"
 
-#define OCCUPENCYMIN 0.05
-#define OCCUPENCYMAX 0.1
-#define SHAPELISTLENGTH 1
+#define OCCUPENCYMIN 0.1
+#define OCCUPENCYMAX 0.4
+#define SHAPELISTLENGTH 9
 #define ROOMWIDTH 200
 #define ROOMHEIGHT 200
 #define ROBOTSIZE 3
 #define BOUND 1000
 
 int room[ROOMWIDTH][ROOMHEIGHT] = {0};
-Shape *shapeList[2];
-/*
-static int shapeArray0[5][10] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                            2, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                            2, 2, 2, 2, 2, 0, 0, 0, 0, 2};
-static int shapeArray1[10][20] = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-                                2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2};
-*/
-
+Shape *shapeList[SHAPELISTLENGTH];
 
 // init hard code shape list and outside room wall
 void init() {
@@ -43,11 +25,84 @@ void init() {
         room[0][i] = 1;
         room[ROOMHEIGHT - 1][i] = 1;
     }
-
-    shapeList[0] = new Shape(5, 10);
-    for (int i = 0; i < shapeList[0]->height; i++) {
-        for (int j = 0; j < shapeList[0]->width; j++) {
-            shapeList[0]->index(i, j) = shapeArray0[i][j];
+    // init the rectangle shapes
+    int shapeIndex = 0;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray0[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray1[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray2[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray3[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray4[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray5[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray6[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray7[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray8[i][j];
             //std::cout<<shapeList[0]->index(i,j);
         }
         //std::cout<<std::endl;
@@ -134,7 +189,7 @@ double updateRoom(int x, int y, int shape_index, double current_occupancy) {
 int main() {
 
     init();
-    std::fstream myfile("/home/hiwi03/Roomgenerator/generatelist.txt");
+    std::fstream myfile("/home/hiwi03/Roomgenerator/generatelist.txt", std::ios::trunc);
     std::cout<<myfile.is_open()<<std::endl;
     double occupancy = 0;
     // in order to bound the search time as improper setting could face no valid map
