@@ -20,7 +20,7 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>20 20</size>
+              <size>30 30</size>
             </plane>
           </geometry>
           <surface>
@@ -39,14 +39,14 @@
             </friction>
             <bounce/>
           </surface>
-          <max_contacts>10</max_contacts>
+          <max_contacts>15</max_contacts>
         </collision>
         <visual name='visual'>
           <cast_shadows>0</cast_shadows>
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>20 20</size>
+              <size>30 30</size>
             </plane>
           </geometry>
           <material>
@@ -67,7 +67,7 @@
       <collision name='Wall_3_Collision'>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 1.25 0 -0 0</pose>
@@ -76,7 +76,7 @@
         <pose frame=''>0 0 1.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <material>
@@ -90,13 +90,13 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>0 9.95 0 0 -0 0</pose>
+      <pose frame=''>0 14.95 0 0 -0 0</pose>
     </link>
     <link name='Wall_5'>
       <collision name='Wall_5_Collision'>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 1.25 0 -0 0</pose>
@@ -105,7 +105,7 @@
         <pose frame=''>0 0 1.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <material>
@@ -119,13 +119,13 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>-9.95 0 0 0 -0 1.5707</pose>
+      <pose frame=''>-14.95 0 0 0 -0 1.5707</pose>
     </link>
     <link name='Wall_6'>
       <collision name='Wall_6_Collision'>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 1.25 0 -0 0</pose>
@@ -134,7 +134,7 @@
         <pose frame=''>0 0 1.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <material>
@@ -148,13 +148,13 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>0 -9.95 0 0 -0 0</pose>
+      <pose frame=''>0 -14.95 0 0 -0 0</pose>
     </link>
     <link name='Wall_7'>
       <collision name='Wall_7_Collision'>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 1.25 0 -0 0</pose>
@@ -163,7 +163,7 @@
         <pose frame=''>0 0 1.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>20 0.10 2.5</size>
+            <size>30 0.10 2.5</size>
           </box>
         </geometry>
         <material>
@@ -177,7 +177,7 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>9.95 0 0 0 -0 1.5707</pose>
+      <pose frame=''>14.95 0 0 0 -0 1.5707</pose>
     </link>
     <static>1</static>
   </model>

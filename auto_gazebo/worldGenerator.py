@@ -21,11 +21,25 @@ def insert_new_shape(x, y, shape_index, world):
         newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/shape7.sdf')
     elif shape_index == 8:
         newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/shape8.sdf')
+    elif shape_index == 9:
+        newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/cylinder_d=30.sdf')
+    elif shape_index == 10:
+        newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/cylinder_d=50.sdf')
+    elif shape_index == 11:
+        newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/ball_d=50.sdf')
+    elif shape_index == 12:
+        newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/box_d=50.sdf')
+    elif shape_index == 13:
+        newshapefile = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/shapes/box_d=20.sdf')
     
     newshape_root = newshapefile.getroot()
     newshape = newshape_root.find('model')
     # changing location and adding shape into the world file
-    n_pose = newshape.find('pose')
+    if shape_index>=9:
+        n_link = newshape.find('link')
+        n_pose = n_link.find('pose')
+    else:
+        n_pose = newshape.find('pose')
     # in the form of (x,y,z,alpha,beta,garmma)
     n_pose.text = str(x) +' '+str(y)+' 0 0 -0 0'
     # print(n_pose.text)
@@ -39,7 +53,6 @@ def insert_new_shape(x, y, shape_index, world):
 def main():
     f = open("/home/hiwi03/Roomgenerator/generatelist.txt","r+")
     lines = f.readlines()
-    # get the inital empty map with size 100*100
     tree = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/init.world')
     root = tree.getroot()
     world = root.find('world')
@@ -48,7 +61,7 @@ def main():
         insert_new_shape(newshape_info[0],newshape_info[1],int(newshape_info[2]), world)
 
 
-    tree.write('/home/hiwi03/Roomgenerator/auto_gazebo/output.world')
+    tree.write('/home/hiwi03/Roomgenerator/auto_gazebo/30*30_occu=20_2.world')
     print('finished!')
 
 

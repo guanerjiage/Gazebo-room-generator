@@ -4,11 +4,11 @@
 #include "Shape.h"
 #include "shapelist.h"
 
-#define OCCUPENCYMIN 0.1
-#define OCCUPENCYMAX 0.4
-#define SHAPELISTLENGTH 9
-#define ROOMWIDTH 200
-#define ROOMHEIGHT 200
+#define OCCUPENCYMIN 0.3
+#define OCCUPENCYMAX 0.31
+#define SHAPELISTLENGTH 14
+#define ROOMWIDTH 300
+#define ROOMHEIGHT 300
 #define ROBOTSIZE 3
 #define BOUND 1000
 
@@ -107,7 +107,52 @@ void init() {
         }
         //std::cout<<std::endl;
     }
-
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray9[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray10[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+        shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray11[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray12[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
+    shapeIndex++;
+    shapeList[shapeIndex] = new Shape(shapeSize[shapeIndex][0],shapeSize[shapeIndex][1]);
+    for (int i = 0; i < shapeList[shapeIndex]->height; i++) {
+        for (int j = 0; j < shapeList[shapeIndex]->width; j++) {
+            shapeList[shapeIndex]->index(i, j) = shapeArray13[i][j];
+            //std::cout<<shapeList[0]->index(i,j);
+        }
+        //std::cout<<std::endl;
+    }
     return;
 }
 
@@ -146,7 +191,6 @@ bool checkValidation(int x, int y, int shape_index, double current_occupancy) {
     //std::cout << "Pass intersection check" << std::endl;
 
     // check if roadway for robot still exist
-    // for simplification we over approximate at the corner cases
     for (int i = x - ROBOTSIZE; i < (x + shapeList[shape_index]->height + ROBOTSIZE); i++) {
         for (int j = 1; j <= ROBOTSIZE; j++) {
             //std::cout<<'('<<i<<','<<y-j<<") ("<<i<<','<<y + shapeList[shape_index]->width - 1 + j<<')'<<std::endl;
@@ -188,8 +232,9 @@ int main() {
 
     init();
     std::fstream generateListF("/home/hiwi03/Roomgenerator/generatelist.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
-    std::fstream mapArrayF("/home/hiwi03/Roomgenerator/maparray.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
-    double occupancy = 0;
+    std::fstream mapArrayF("/home/hiwi03/Roomgenerator/30*30_occu=20_2.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
+    // initial the occupency with four outside wall
+    double occupancy = 4*(ROOMHEIGHT-1)/(ROOMHEIGHT*ROOMWIDTH);
     srand(time(0));
     
     // in order to bound the search time as improper setting could face no valid map
@@ -203,11 +248,12 @@ int main() {
             occupancy = updateRoom(x, y, s, occupancy);
             // std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
             // in order to fit into gazebo we change the coordinate
-            float x_g = (y+float(shapeList[s]->width)/2)/10-10 ;
-            float y_g = 10-(x+float(shapeList[s]->height)/2)/10 ;
+            float x_g = (y+float(shapeList[s]->width)/2)/10-ROOMWIDTH/20 ;
+            float y_g = ROOMHEIGHT/20-(x+float(shapeList[s]->height)/2)/10 ;
             generateListF <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
         }
-    }
+    }  
+
 
     // print the room
     for (int i = 0; i < ROOMHEIGHT; i++) {
