@@ -1,21 +1,21 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name='shape6'>
-    <pose frame=''>-0.005 0.022 0 0 -0 0</pose>
-    <link name='Wall_27'>
-      <collision name='Wall_27_Collision'>
+  <model name='shape8'>
+    <pose frame=''>-0.011 0.037 0 0 -0 0</pose>
+    <link name='Wall_41'>
+      <collision name='Wall_41_Collision'>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
       </collision>
-      <visual name='Wall_27_Visual'>
+      <visual name='Wall_41_Visual'>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <material>
@@ -29,22 +29,22 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>0 1.95 0 0 -0 0</pose>
+      <pose frame=''>0 3.95 0 0 -0 0</pose>
     </link>
-    <link name='Wall_28'>
-      <collision name='Wall_28_Collision'>
+    <link name='Wall_42'>
+      <collision name='Wall_42_Collision'>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
       </collision>
-      <visual name='Wall_28_Visual'>
+      <visual name='Wall_42_Visual'>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <material>
@@ -58,22 +58,22 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>1.95 -0 0 0 -0 -1.5708</pose>
+      <pose frame=''>3.95 -0 0 0 -0 -1.5708</pose>
     </link>
-    <link name='Wall_29'>
-      <collision name='Wall_29_Collision'>
+    <link name='Wall_43'>
+      <collision name='Wall_43_Collision'>
         <geometry>
           <box>
-            <size>2.8 0.1 0.5</size>
+            <size>6.8 0.1 0.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
       </collision>
-      <visual name='Wall_29_Visual'>
+      <visual name='Wall_43_Visual'>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>2.8 0.1 0.5</size>
+            <size>6.8 0.1 0.5</size>
           </box>
         </geometry>
         <material>
@@ -87,22 +87,22 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>0.6 -1.95 0 0 -0 3.14159</pose>
+      <pose frame=''>0.6 -3.95 0 0 -0 3.14159</pose>
     </link>
-    <link name='Wall_31'>
-      <collision name='Wall_31_Collision'>
+    <link name='Wall_45'>
+      <collision name='Wall_45_Collision'>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
       </collision>
-      <visual name='Wall_31_Visual'>
+      <visual name='Wall_45_Visual'>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
-            <size>4 0.1 0.5</size>
+            <size>8 0.1 0.5</size>
           </box>
         </geometry>
         <material>
@@ -116,10 +116,10 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>-1.95 -0 0 0 -0 -1.5708</pose>
+      <pose frame=''>-3.95 -0 0 0 -0 -1.5708</pose>
     </link>
-    <link name='Wall_32'>
-      <collision name='Wall_32_Collision'>
+    <link name='Wall_46'>
+      <collision name='Wall_46_Collision'>
         <geometry>
           <box>
             <size>0.5 0.1 0.5</size>
@@ -127,7 +127,7 @@
         </geometry>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
       </collision>
-      <visual name='Wall_32_Visual'>
+      <visual name='Wall_46_Visual'>
         <pose frame=''>0 0 0.25 0 -0 0</pose>
         <geometry>
           <box>
@@ -145,7 +145,7 @@
           <layer>0</layer>
         </meta>
       </visual>
-      <pose frame=''>-1.75 -1.95 0 0 -0 0</pose>
+      <pose frame=''>-3.75 -3.95 0 0 -0 0</pose>
     </link>
     <static>1</static>
   </model>

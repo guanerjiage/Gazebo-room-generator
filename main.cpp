@@ -5,8 +5,10 @@
 #include "shapelist.h"
 
 #define OCCUPENCYMIN 0.3
-#define OCCUPENCYMAX 0.31
-#define SHAPELISTLENGTH 14
+#define OCCUPENCYMAX 0.32
+#define SHAPELISTLENGTH 9
+#define OBSTACLELENGTH 5
+#define OBSTACLEOFFSET 9
 #define ROOMWIDTH 300
 #define ROOMHEIGHT 300
 #define ROBOTSIZE 3
@@ -239,6 +241,7 @@ int main() {
     
     // in order to bound the search time as improper setting could face no valid map
     int search = 0;
+    // insert sub rooms
     while (occupancy <= OCCUPENCYMIN && search<BOUND) {
         search++;
         float x = rand() % ROOMHEIGHT;
@@ -252,7 +255,23 @@ int main() {
             float y_g = ROOMHEIGHT/20-(x+float(shapeList[s]->height)/2)/10 ;
             generateListF <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
         }
-    }  
+    } 
+    // insert obstacles
+    while (occupancy <= OCCUPENCYMIN && search<BOUND) {
+        search++;
+        float x = rand() % ROOMHEIGHT;
+        float y = rand() % ROOMWIDTH;
+        int s = OBSTACLEOFFSET + rand() % OBSTACLELENGTH;
+        if (checkValidation(x, y, s, occupancy)) {
+            occupancy = updateRoom(x, y, s, occupancy);
+            // std::cout << x<<' '<<y<<' '<<s<<' '<<occupancy << std::endl;
+            // in order to fit into gazebo we change the coordinate
+            float x_g = (y+float(shapeList[s]->width)/2)/10-ROOMWIDTH/20 ;
+            float y_g = ROOMHEIGHT/20-(x+float(shapeList[s]->height)/2)/10 ;
+            generateListF <<x_g<<' '<<y_g<<' '<<s<<' '<<occupancy << std::endl;
+        }
+    } 
+
 
 
     // print the room
