@@ -5,12 +5,12 @@
 #include "shapelist.h"
 
 #define OCCUPENCYMIN 0.3
-#define OCCUPENCYMAX 0.31
+#define OCCUPENCYMAX 0.303
 #define SHAPELISTLENGTH 9
 #define OBSTACLELENGTH 5
 #define OBSTACLEOFFSET 9
-#define ROOMWIDTH 300
-#define ROOMHEIGHT 300
+#define ROOMWIDTH 800
+#define ROOMHEIGHT 800
 #define ROBOTSIZE 4
 #define BOUND 1000
 
@@ -234,7 +234,7 @@ int main() {
 
     init();
     std::fstream generateListF("/home/hiwi03/Roomgenerator/generatelist.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
-    std::fstream mapArrayF("/home/hiwi03/Roomgenerator/30*30_occu=20_2.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
+    std::fstream mapArrayF("/home/hiwi03/Roomgenerator/80*80_occu=30_1.txt", std::fstream::in | std::fstream::out |std::fstream::trunc);
     // initial the occupency with four outside wall
     double occupancy = 4*(ROOMHEIGHT-1)/(ROOMHEIGHT*ROOMWIDTH);
     srand(time(0));
@@ -280,8 +280,9 @@ int main() {
             if (room[i][j] == 0)
                 mapArrayF << 0<<' ';
             else
-                mapArrayF << 100<<' ';
+                mapArrayF << 1<<' ';
         }
+        mapArrayF <<std::endl;
     }
 
 

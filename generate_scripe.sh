@@ -3,4 +3,4 @@ make
 ./Roomgenerator
 cd auto_gazebo
 python worldGenerator.py
-gazebo 30*30_occu=20_2.world
+gazebo 80*80_occu=30_1.world

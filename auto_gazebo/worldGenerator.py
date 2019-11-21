@@ -53,7 +53,7 @@ def insert_new_shape(x, y, shape_index, world):
 def main():
     f = open("/home/hiwi03/Roomgenerator/generatelist.txt","r+")
     lines = f.readlines()
-    tree = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/init.world')
+    tree = ET.parse('/home/hiwi03/Roomgenerator/auto_gazebo/init80.world')
     root = tree.getroot()
     world = root.find('world')
     for line in lines:
@@ -61,7 +61,7 @@ def main():
         insert_new_shape(newshape_info[0],newshape_info[1],int(newshape_info[2]), world)
 
 
-    tree.write('/home/hiwi03/Roomgenerator/auto_gazebo/30*30_occu=20_2.world')
+    tree.write('/home/hiwi03/Roomgenerator/auto_gazebo/80*80_occu=30_1.world')
     print('finished!')
 
 
