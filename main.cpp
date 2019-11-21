@@ -5,13 +5,13 @@
 #include "shapelist.h"
 
 #define OCCUPENCYMIN 0.3
-#define OCCUPENCYMAX 0.32
+#define OCCUPENCYMAX 0.31
 #define SHAPELISTLENGTH 9
 #define OBSTACLELENGTH 5
 #define OBSTACLEOFFSET 9
 #define ROOMWIDTH 300
 #define ROOMHEIGHT 300
-#define ROBOTSIZE 3
+#define ROBOTSIZE 4
 #define BOUND 1000
 
 int room[ROOMWIDTH][ROOMHEIGHT] = {0};
@@ -257,7 +257,7 @@ int main() {
         }
     } 
     // insert obstacles
-    while (occupancy <= OCCUPENCYMIN && search<BOUND) {
+    while (occupancy <= OCCUPENCYMAX && search<BOUND) {
         search++;
         float x = rand() % ROOMHEIGHT;
         float y = rand() % ROOMWIDTH;
