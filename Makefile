@@ -48,10 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hiwi03/Roomgenerator
+CMAKE_SOURCE_DIR = $(SRCPATH)
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hiwi03/Roomgenerator
+CMAKE_BINARY_DIR = $(SRCPATH)
+
+SRCPATH:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +83,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hiwi03/Roomgenerator/CMakeFiles /home/hiwi03/Roomgenerator/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start $(SRCPATH)/CMakeFiles $(SRCPATH)/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hiwi03/Roomgenerator/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start $(SRCPATH)/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
